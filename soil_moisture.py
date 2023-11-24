@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import ADC0832
 import time
 
-def measure_soil_moisture_level(gpio_pin):
+def measure_soil_moisture_level():
 
     # Set the ADC
     ADC0832.setup()
@@ -23,10 +23,9 @@ def measure_soil_moisture_level(gpio_pin):
 
 if __name__ == '__main__':
     # Get the gpio pin number
-    gpio_pin = int(input('Enter the gpio pin number: '))
     
     # Measure the soil moisture level
-    soil_moisture_level = measure_soil_moisture_level(gpio_pin)
+    soil_moisture_level = measure_soil_moisture_level()
     
     # Print the soil moisture level
     print('Soil moisture level: {}%'.format(soil_moisture_level))
