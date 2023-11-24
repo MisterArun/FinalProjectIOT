@@ -10,7 +10,7 @@ def destroy():
   pass
 
 def main_iteration():
-  res = ADC0832.getADC(0)
+  res = ADC0832.getADC(1)
   Vr = 3.3 * float(res) / 255
   Rt = (3.3 * 10000 / Vr) - 10000
   temp = 1/(((math.log(Rt / 10000)) / 3455) + (1 / (273.15+25)))
