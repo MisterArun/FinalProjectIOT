@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 def ds18b20Read():
-	tfile = open("/sys/bus/w1/devices/28-0000062abd71/w1_slave")
+	tfile = open("/sys/bus/w1/devices/28-020491771468/w1_slave")
 	text = tfile.read()
 	tfile.close()
 	secondline = text.split("\n")[1]
@@ -9,5 +9,5 @@ def ds18b20Read():
 	temperature = float(temperaturedata[2:])
 	temperature = temperature / 1000
 	temperature = round(temperature, 2)
-	print temperature
+	print(temperature)
 	return temperature
