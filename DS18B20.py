@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+def destroy():
+    pass
+
 def ds18b20Read():
 	tfile = open("/sys/bus/w1/devices/28-020491771468/w1_slave")
 	text = tfile.read()
@@ -11,3 +14,17 @@ def ds18b20Read():
 	temperature = round(temperature, 2)
 	print(temperature)
 	return temperature
+
+def main_iteration():
+    temp = ds18b20Read()
+
+def loop():
+    while True:
+        main_iteration()
+
+if __name__ == '__main__':
+    try:
+        loop()
+    except KeyboardInterrupt: 
+        destroy()
+        print ('The end !')
