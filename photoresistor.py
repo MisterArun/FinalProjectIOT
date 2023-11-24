@@ -11,7 +11,7 @@ def destroy():
     pass
 
 def main_iteration():
-    res = ADC0832.getADC(0)
+    res = ADC0832.getADC(1)
     vol = 5/255 * res
     lightStatus = ""
     #print ('analog value: %03d  ||  voltage: %.2fV' %(res, vol))

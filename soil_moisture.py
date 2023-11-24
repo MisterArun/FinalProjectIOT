@@ -1,19 +1,22 @@
 import RPi.GPIO as GPIO
+import ADC0832
 import time
 
 def measure_soil_moisture_level(gpio_pin):
 
+    # Set the ADC
+    ADC0832.setup()
+
     # Set the mode of the GPIO pins
     GPIO.setmode(GPIO.BCM)
     
-    # Set the gpio pin as an input pin
-    GPIO.setup(gpio_pin, GPIO.IN)
+    # ADC values
+    res = ADC0832.getADC(0)
+    vol = 3.3/255 * res
     
-    # Read the value from the gpio pin
-    value = GPIO.input(gpio_pin)
     
     # Calculate the soil moisture level in percentage
-    soil_moisture_level = (value * 100) / 1024
+    soil_moisture_level = (vol * 100) / 1024
     
     # Return the soil moisture level
     return soil_moisture_level
