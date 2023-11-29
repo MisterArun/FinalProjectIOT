@@ -35,7 +35,7 @@ def loop():
         print('Light: ' + light)
         print('Temperature: ' + temperature)
         print('Soil: ' + soil_moisture())
-        sleep(1)
+        time.sleep(1)
 
 # Main
 if __name__ == '__main__':

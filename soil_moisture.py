@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import ADC0832
 import time
 
-def init()
+def init():
     # Set the ADC
     ADC0832.setup()
 
@@ -28,8 +28,9 @@ def main_iteration():
     return measure_soil_moisture_level()
 
 def loop():
-    main_iteration()
-    sleep(1)
+	while True:
+		main_iteration()
+		time.sleep(1)
 
 if __name__ == '__main__':
     init()
