@@ -2,7 +2,7 @@ from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 import json
 import time
 import photoresistor as PH
-import DS18B20.py as TH
+import DS18B20 as TH
 import soil_moisture as SM
 import ADC0832
 import RPi.GPIO as GPIO
@@ -29,12 +29,12 @@ def loop():
 
     while(True):
         light = round(PH.main_iteration(), 2)
-        temperature = TH.main_iteration()
-        soil_moisture = SM.main_iteration()`
+        temperature = 2 #TH.main_iteration()
+        soil_moisture = SM.main_iteration()
 
-        print('Light: ' + light)
-        print('Temperature: ' + temperature)
-        print('Soil: ' + soil_moisture())
+        print('Light: ' + str(light))
+        print('Temperature: ' + str(temperature))
+        print('Soil: ' + str(soil_moisture))
         time.sleep(1)
 
 # Main

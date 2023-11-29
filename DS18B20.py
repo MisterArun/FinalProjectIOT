@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import time
 
 def destroy():
     pass
@@ -18,9 +19,9 @@ def main_iteration():
     return ds18b20Read()
 
 def loop():
-    while True:
-        print(main_iteration())
-		sleep(1)
+	while True:
+		print(main_iteration())
+		time.sleep(1)
 
 if __name__ == '__main__':
     try:
