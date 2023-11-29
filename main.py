@@ -28,12 +28,12 @@ def send_data(message):
 def loop():
 
     while(True):
-        try:
-            light = round(PH.main_iteration(), 2)
-            temperature = 2 #placeholder
-            
-        #except RuntimeError as error:     # Errors happen fairly often, DHT's are hard to read, just keep going
-        #    print(error.args[0])
+        light = round(PH.main_iteration(), 2)
+        temperature = TH.main_iteration()
+
+        print(light)
+        print(temperature)
+        sleep (1)
 
 # Main
 if __name__ == '__main__':

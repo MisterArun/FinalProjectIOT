@@ -12,15 +12,15 @@ def ds18b20Read():
 	temperature = float(temperaturedata[2:])
 	temperature = temperature / 1000
 	temperature = round(temperature, 2)
-	print(temperature)
 	return temperature
 
 def main_iteration():
-    temp = ds18b20Read()
+    return ds18b20Read()
 
 def loop():
     while True:
-        main_iteration()
+        print(main_iteration())
+		sleep(1)
 
 if __name__ == '__main__':
     try:
