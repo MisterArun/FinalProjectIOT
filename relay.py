@@ -2,29 +2,28 @@
 import RPi.GPIO as GPIO
 import time
 
-RelayPin = 11    # pin11
+RelayPin = 16    # pin16
 
-def setup():
-	GPIO.setmode(GPIO.BOARD)         # Numbers pins by physical location
-	GPIO.setup(RelayPin, GPIO.OUT)   # Set pin mode as output
-	GPIO.output(RelayPin, GPIO.HIGH)
+# GPIO setup
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(RelayPin, GPIO.OUT)
 
-def loop():
-	while True:
-		print('close')
-		GPIO.output(RelayPin, GPIO.LOW)
-		time.sleep(0.5)
-		print('open')
-		GPIO.output(RelayPin, GPIO.HIGH)
-		time.sleep(0.5)
+def motor_on(pin):
+    GPIO.output(pin, GPIO.HIGH) # Turn motor on
 
-def destroy():
-	GPIO.output(RelayPin, GPIO.HIGH)
-	GPIO.cleanup()                     # Release resource
+def motor_off(pin):
+    GPIO.output(pin, GPIO.LOW) # Turn motor off
 
-if __name__ == '__main__':     # Program start from here
-	setup()
-	try:
-		loop()
-	except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
-		destroy()
+
+if __name__ == '__main__':
+    try:
+        motor_on(RelayPin)
+        print("motor on")
+        time.sleep(1)
+        motor_off(RelayPin)
+        print("motor off")
+        time.sleep(1)
+        GPIO.cleanup()
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+        pass
