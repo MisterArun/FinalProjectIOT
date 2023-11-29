@@ -25,11 +25,17 @@ def measure_soil_moisture_level():
     return soil_moisture_level
 
 def main_iteration():
-    pass
+    return measure_soil_moisture_level()
+
+def loop():
+    main_iteration()
+    sleep(1)
 
 if __name__ == '__main__':
-    # Initialize
     init()
     
-    # Measure the soil moisture level
-    soil_moisture_level = measure_soil_moisture_level()
+    try:
+        loop()
+    except KeyboardInterrupt: 
+        destroy()
+        print ('The end !')
