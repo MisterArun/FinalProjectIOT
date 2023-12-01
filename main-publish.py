@@ -54,9 +54,10 @@ def loop():
             # Send data to topic
             send_data(message)
 
-            time.sleep(3)
         except RuntimeError as error:     # Errors happen fairly often, DHT's are hard to read, just keep going
             print(error.args[0])
+        
+        time.sleep(3)
 
 # Main
 if __name__ == '__main__':
@@ -64,9 +65,13 @@ if __name__ == '__main__':
     init()
     try:
         # Connect
+        mqttc.connect()
+        print("Connect OK!")
 
         # Main loop called
         loop()
     except KeyboardInterrupt:
         destroy()
+        mqttc.disconnect()
         print ('The end !')
+        exit()
