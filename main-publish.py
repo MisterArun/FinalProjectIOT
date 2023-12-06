@@ -13,23 +13,36 @@ endpoint = "a3r2erbmcexhjh-ats.iot.us-east-1.amazonaws.com" #Use the endpoint fr
 port = 8883
 topic = "tb/aws/iot/projekt/IOT2 Project Device"
 
-
 # Init MQTT client
 mqttc = AWSIoTMQTTClient(clientID)
 mqttc.configureEndpoint(endpoint,port)
 mqttc.configureCredentials("certs/AmazonRootCA1.pem","certs/iot2project-private.pem.key","certs/iot2project-certificate.pem.crt")
 
+# Actuators
+LED = 25
+
+
 def init():
     ADC0832.setup()
     GPIO.setmode(GPIO.BCM)
 
+    GPIO.setup(LED, GPIO.OUT)
+
 def destroy():
     ADC0832.destroy()
+
+def lightOn():
+    GPIO.setup(LED, GPIO.LOW)
+
+def lightOff():
+    GPIO.setup(LED, GPIO.HIGH)
 
 # Send message to the iot topic
 def send_data(message):
     mqttc.publish(topic, json.dumps(message), 0)
     print("Message Published")
+
+
 
 # Loop until terminated
 def loop():
@@ -40,11 +53,20 @@ def loop():
             temperature = TH.main_iteration()
             soil_moisture = SM.main_iteration()
 
+            # Control light
+            if(lightStatus == "Dark"):
+                lightOn()
+            else:
+                lightOff()
+                
+
+            # Display
             print('Light: ' + str(light))
             print('Temperature: ' + str(temperature))
             print('Soil: ' + str(soil_moisture))
             print()
 
+            # Formulate message
             message = {
                 'temperature': temperature,
                 'light': light,
