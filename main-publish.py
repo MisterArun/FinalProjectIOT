@@ -36,8 +36,8 @@ def loop():
 
     while(True):
         try:
-            light = round(PH.main_iteration(), 2)
-            temperature = 2 #TH.main_iteration()
+            light = round(PH.main_iteration()[0], 2)
+            temperature = TH.main_iteration()
             soil_moisture = SM.main_iteration()
 
             print('Light: ' + str(light))

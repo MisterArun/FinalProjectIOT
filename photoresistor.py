@@ -24,7 +24,7 @@ def main_iteration():
     
     print(lightStatus)
     
-    return vol
+    return [vol, lightStatus]
 
 
 def loop():
