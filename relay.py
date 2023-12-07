@@ -5,8 +5,9 @@ import time
 RelayPin = 16    # pin16
 
 # GPIO setup
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(RelayPin, GPIO.OUT)
+def init():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(RelayPin, GPIO.OUT)
 
 def motor_on(pin):
     GPIO.output(pin, GPIO.HIGH) # Turn motor on
@@ -17,6 +18,7 @@ def motor_off(pin):
 
 if __name__ == '__main__':
     try:
+        init()
         motor_on(RelayPin)
         print("motor on")
         time.sleep(1)
