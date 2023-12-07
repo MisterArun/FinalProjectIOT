@@ -47,6 +47,11 @@ def send_data(message):
 # Loop until terminated
 def loop():
 
+    #temp_thresh = input("Enter the temperature threshold: ")
+    #print('Temperature threshold is ' + str(temp_thresh))
+    #soil_thresh = input("Enter the soil moisture threshold: ")
+    #print('Soil moisture threshold is ' + str(soil_thresh))
+
     while(True):
         try:
             light = round(PH.main_iteration()[0], 2)
