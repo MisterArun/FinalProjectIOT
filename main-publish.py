@@ -6,6 +6,7 @@ import DS18B20 as TH
 import soil_moisture as SM
 import ADC0832
 import RPi.GPIO as GPIO
+import relay as pump
 
 # MQTT config (clientID must be unique within the AWS account)
 clientID = "736585036936"
@@ -27,6 +28,7 @@ def init():
     GPIO.setmode(GPIO.BCM)
 
     GPIO.setup(LED, GPIO.OUT)
+    pump.init()
 
 def destroy():
     ADC0832.destroy()
@@ -46,6 +48,18 @@ def send_data(message):
 
 # Loop until terminated
 def loop():
+<<<<<<< HEAD
+=======
+
+    temp_thresh = 30
+    soil_thresh = 200
+
+    #temp_thresh = input("Enter the temperature threshold: ")
+    #print('Temperature threshold is ' + str(temp_thresh))
+    #soil_thresh = input("Enter the soil moisture threshold: ")
+    #print('Soil moisture threshold is ' + str(soil_thresh))
+
+>>>>>>> 7ce877c83818c05850d33bf4310051ab91d75e91
     while(True):
         try:
             lightData = PH.main_iteration()
@@ -57,12 +71,21 @@ def loop():
             # Control light
             if(lightStatus == "Dark"):
                 lightOn()
+                print('Lamp on')
             else:
                 lightOff()
-                
-
+            
+            if(temperature > temp_thresh):
+                print('Fan on')
+            
+            if(soil_moisture < soil_thresh):
+                pump.motor_on()
+                print('Motor running')
+            else:
+                motor_off()
+            
             # Display
-            print('Light: ' + str(light))
+            print('Light: ' + lightStatus)
             print('Temperature: ' + str(temperature))
             print('Soil: ' + str(soil_moisture))
             print()

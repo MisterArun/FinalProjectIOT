@@ -23,7 +23,7 @@ def measure_soil_moisture_level():
     soil_moisture_level = (vol * 100) / 1024
     
     # Print the soil moisture level
-    print('Soil moisture level: {}%'.format(soil_moisture_level))
+    #print('Soil moisture level: {}%'.format(soil_moisture_level))
 
     # Return the soil moisture level
     return soil_moisture_level

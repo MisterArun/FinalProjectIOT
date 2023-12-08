@@ -22,7 +22,7 @@ def main_iteration():
     else:
         lightStatus = "Light"
     
-    print(lightStatus)
+    #print(lightStatus)
     
     return [vol, lightStatus]
 
