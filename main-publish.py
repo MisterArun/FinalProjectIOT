@@ -50,7 +50,7 @@ def send_data(message):
 def loop():
 
     temp_thresh = 30
-    soil_thresh = 1
+    soil_thresh = 200
 
     #temp_thresh = input("Enter the temperature threshold: ")
     #print('Temperature threshold is ' + str(temp_thresh))
@@ -66,23 +66,21 @@ def loop():
             # Control light
             if(lightStatus == "Dark"):
                 lightOn()
+                print('Lamp on')
             else:
                 lightOff()
             
             if(temperature > temp_thresh):
                 print('Fan on')
-
-                pass
             
             if(soil_moisture < soil_thresh):
                 pump.motor_on()
                 print('Motor running')
-                pass
             else:
                 motor_off()
             
             # Display
-            print('Light: ' + str(light))
+            print('Light: ' + lightStatus)
             print('Temperature: ' + str(temperature))
             print('Soil: ' + str(soil_moisture))
             print()
