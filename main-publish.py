@@ -79,7 +79,7 @@ def loop():
                 pump.motor_on()
                 print('Motor running')
             else:
-                motor_off()
+                pump.motor_off()
             
             # Display
             print('Light: ' + lightStatus)
