@@ -9,6 +9,10 @@ def init():
     # Set the mode of the GPIO pins
     GPIO.setmode(GPIO.BCM)
 
+def destroy():
+    ADC0832.destroy()
+    
+
 def measure_soil_moisture_level():
     
     # ADC values

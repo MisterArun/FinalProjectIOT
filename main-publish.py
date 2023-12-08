@@ -19,7 +19,7 @@ mqttc.configureEndpoint(endpoint,port)
 mqttc.configureCredentials("certs/AmazonRootCA1.pem","certs/iot2project-private.pem.key","certs/iot2project-certificate.pem.crt")
 
 # Actuators
-LED = 25
+LED = 21
 
 
 def init():
@@ -46,10 +46,11 @@ def send_data(message):
 
 # Loop until terminated
 def loop():
-
     while(True):
         try:
-            light = round(PH.main_iteration()[0], 2)
+            lightData = PH.main_iteration()
+            light = round(lightData[0], 2)
+            lightStatus = lightData[1]
             temperature = TH.main_iteration()
             soil_moisture = SM.main_iteration()
 
